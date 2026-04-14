@@ -2,7 +2,7 @@
 
 A premium, high-converting single-page hero section for **Brandly**, a boutique brand design agency. This project focuses on visual excellence, featuring a fullscreen video experience and a clean, editorial layout.
 
-![Brandly Banner](https://images.unsplash.com/photo-1586717791821-3f44a563cc4c?q=80&w=1200&auto=format&fit=crop)
+![Brandly Banner](./public/media/hero-poster.png)
 
 ## ✨ Features
 
