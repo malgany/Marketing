@@ -64,10 +64,6 @@ export default function App() {
     return () => window.removeEventListener("resize", checkViewportAndNetwork);
   }, []);
 
-  // Define qual imagem mostrar no final baseado no tamanho da tela
-  const finalPoster = isLargeDesktop 
-    ? "/media/hero-poster-last-frame.png?v=2" 
-    : "/media/hero-poster.png?v=2";
 
   return (
     <main
@@ -77,7 +73,7 @@ export default function App() {
       {/* Camada de Poster (FICA SEMPRE NO FUNDO) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img
-          src={videoEnded ? finalPoster : "/media/hero-poster.png?v=2"}
+          src={isLargeDesktop ? "/media/hero-poster-last-frame.png?v=2" : "/media/hero-poster.png?v=2"}
           alt=""
           className="h-full w-full object-cover object-center transition-opacity duration-700"
           loading="eager"
