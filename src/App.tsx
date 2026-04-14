@@ -83,8 +83,8 @@ export default function App() {
       {/* Camada de Vídeo (FICA POR CIMA E DESAPARECE NO FINAL) */}
       {shouldPlayVideo && (
         <div className={cn(
-          "fixed inset-0 z-1 pointer-events-none transition-opacity duration-1000",
-          videoEnded ? "opacity-0 invisible" : "opacity-100"
+          "fixed inset-0 z-[1] pointer-events-none transition-opacity duration-[1500ms] ease-in-out",
+          videoEnded ? "opacity-0" : "opacity-100"
         )}>
           <VideoBackground
             src="/media/hero-presentation-original.mp4?v=2"
