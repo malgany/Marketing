@@ -2,7 +2,7 @@ import { useState, type ComponentProps } from "react";
 import { ArrowDown } from "lucide-react";
 import { VideoBackground } from "./components/media/video-background";
 
-const navigationLinks = ["Packs", "Categorias", "Como comprar", "FAQ", "Suporte"];
+const navigationLinks = ["Packs", "Categorias", "FAQ", "Contato"];
 
 function SocialButton({
   label,
@@ -109,7 +109,7 @@ export default function App() {
                 <span className="block">E POSTAR</span>
               </h1>
 
-              <p className="mt-4 max-w-[23rem] text-[1.12rem] leading-[1.4] text-[#181818] lg:mt-5 lg:text-[1.14rem]">
+              <p className="hidden max-w-[23rem] text-[1.12rem] leading-[1.4] text-[#181818] lg:mt-5 lg:block lg:text-[1.14rem]">
                 Artes e materiais para redes sociais, organizados para você escolher rápido,
                 editar em minutos e comprar sem complicação.
               </p>
@@ -122,8 +122,8 @@ export default function App() {
             />
           </div>
 
-          <div className="mt-[15rem] grid items-start gap-8 lg:grid-cols-[minmax(0,0.84fr)_minmax(21rem,0.66fr)] lg:gap-14">
-            <div className="mt-48 max-w-[24rem] lg:mt-0">
+          <div className="mt-8 grid items-start gap-8 lg:mt-[24rem] lg:max-xl:mt-[20rem] lg:grid-cols-[minmax(0,0.84fr)_minmax(21rem,0.66fr)] lg:gap-14">
+            <div className="mt-[24rem] max-w-[24rem] lg:mt-0">
               <p className="text-[1.03rem] leading-[1.42] text-[#1a1a1a] lg:text-[1.08rem]">
                 Para pequenas empresas e empreendedores que precisam manter as redes em dia
                 com mais praticidade, rapidez e organização.
@@ -174,11 +174,11 @@ export default function App() {
 
       <button
         type="button"
-        className="fixed bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-3 rounded-full bg-black py-1 pr-1 pl-7 text-[1.08rem] font-medium text-white shadow-[0_14px_28px_rgba(8,8,8,0.08)] transition-colors duration-200 hover:bg-black/85 lg:bottom-8"
+        className="fixed bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-3 rounded-full bg-black py-1 pr-1 pl-7 text-[1.08rem] font-medium text-white shadow-[0_14px_28px_rgba(8,8,8,0.08)] transition-colors duration-200 hover:bg-black/85 max-[340px]:gap-2 max-[340px]:pl-5 max-[340px]:pr-0.5 max-[340px]:text-[0.9rem] lg:bottom-8"
       >
-        <span>Ver packs</span>
-        <span className="flex size-11 items-center justify-center rounded-full bg-white text-black">
-          <ArrowDown className="size-4" strokeWidth={2.1} />
+        <span className="whitespace-nowrap">Ver packs</span>
+        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-black max-[340px]:size-9">
+          <ArrowDown className="size-4 max-[340px]:size-3.5" strokeWidth={2.1} />
         </span>
       </button>
     </main>
