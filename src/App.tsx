@@ -1,4 +1,4 @@
-import { useState, type ComponentProps } from "react";
+import { useState, useEffect, type ComponentProps } from "react";
 import { ArrowDown } from "lucide-react";
 import { VideoBackground } from "./components/media/video-background";
 
@@ -39,6 +39,17 @@ function StatBlock({ title, body }: { title: string; body: string }) {
 
 export default function App() {
   const [videoEnded, setVideoEnded] = useState(false);
+  const [isLargeDesktop, setIsLargeDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsLargeDesktop(window.innerWidth >= 1440);
+    };
+    
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
   return (
     <main
@@ -48,14 +59,14 @@ export default function App() {
       {videoEnded ? (
         <div className="fixed inset-0 z-0 pointer-events-none">
           <img
-            src="/media/hero-poster.png?v=1"
+            src={isLargeDesktop ? "/media/hero-poster-last-frame.png?v=1" : "/media/hero-poster.png?v=1"}
             alt=""
             className="h-full w-full object-cover object-center"
           />
         </div>
       ) : (
         <VideoBackground
-          src="/media/hero-presentation.mp4?v=1"
+          src="/media/hero-presentation-original.mp4?v=1"
           poster="/media/hero-poster.png?v=1"
           containerClassName="fixed inset-0 z-0 pointer-events-none"
           videoClassName="h-full w-full object-cover object-center"
