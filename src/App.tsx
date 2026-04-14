@@ -59,15 +59,15 @@ export default function App() {
       {videoEnded ? (
         <div className="fixed inset-0 z-0 pointer-events-none">
           <img
-            src={isLargeDesktop ? "/media/hero-poster-last-frame.png?v=1" : "/media/hero-poster.png?v=1"}
+            src={isLargeDesktop ? "/media/hero-poster-last-frame.png?v=2" : "/media/hero-poster.png?v=2"}
             alt=""
             className="h-full w-full object-cover object-center"
           />
         </div>
       ) : (
         <VideoBackground
-          src="/media/hero-presentation-original.mp4?v=1"
-          poster="/media/hero-poster.png?v=1"
+          src="/media/hero-presentation-original.mp4?v=2"
+          poster="/media/hero-poster.png?v=2"
           containerClassName="fixed inset-0 z-0 pointer-events-none"
           videoClassName="h-full w-full object-cover object-center"
           preload="auto"
