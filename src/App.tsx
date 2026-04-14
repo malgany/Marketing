@@ -48,15 +48,15 @@ export default function App() {
       {videoEnded ? (
         <div className="fixed inset-0 z-0 pointer-events-none">
           <img
-            src="/media/hero-poster.png"
+            src="/media/hero-poster.png?v=1"
             alt=""
             className="h-full w-full object-cover object-center"
           />
         </div>
       ) : (
         <VideoBackground
-          src="/media/hero-presentation.mp4"
-          poster="/media/hero-poster.png"
+          src="/media/hero-presentation.mp4?v=1"
+          poster="/media/hero-poster.png?v=1"
           containerClassName="fixed inset-0 z-0 pointer-events-none"
           videoClassName="h-full w-full object-cover object-center"
           preload="auto"
