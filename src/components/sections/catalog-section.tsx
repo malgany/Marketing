@@ -22,16 +22,7 @@ export function CatalogSection() {
   return (
     <section id="packs" className="relative scroll-mt-6 bg-white pb-20 pt-16 sm:pb-24 sm:pt-20">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-8 lg:px-10">
-        <div className="max-w-[42rem]">
-          <p className="text-[0.95rem] font-medium text-black/60">Catalogo por categoria</p>
-          <h2 className="font-display mt-4 text-[clamp(3rem,5vw,5.1rem)] leading-[0.9] text-black">
-            ESCOLHA O PACK CERTO PARA SUA ROTINA
-          </h2>
-          <p className="mt-5 max-w-[36rem] text-[1.04rem] leading-[1.6] text-black/70 md:text-[1.08rem]">
-            Filtre por nicho, compare rapidamente e encontre o material que encaixa
-            melhor no seu tipo de negocio.
-          </p>
-        </div>
+
 
         <div className="sticky top-0 z-20 -mx-6 mt-10 border-y border-black/10 bg-white/92 py-4 backdrop-blur-md md:-mx-8 lg:-mx-10">
           <div className="mx-auto flex max-w-[1440px] gap-3 overflow-x-auto px-6 md:px-8 lg:px-10 hide-scrollbar">
