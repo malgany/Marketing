@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f3ee;
+  --background: #ffffff;
   --foreground: #080808;
   --surface: rgba(255, 255, 255, 0.84);
   --border: rgba(8, 8, 8, 0.12);
@@ -21,7 +21,7 @@ body,
 
 body {
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-synthesis-weight: none;
@@ -44,22 +44,4 @@ a {
 
 .font-display {
   font-family: "Anton", sans-serif;
-}
-
-@media (width: 1024px) and (height: 1342px) {
-  .hero-bottom-row {
-    margin-top: 36rem;
-  }
-}
-
-@media (width: 1248px) and (height: 832px) {
-  .hero-bottom-row {
-    margin-top: 18rem;
-  }
-}
-
-@media (width: 1440px) and (height: 900px) {
-  .hero-bottom-row {
-    margin-top: 18rem;
-  }
 }
