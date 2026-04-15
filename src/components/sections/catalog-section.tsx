@@ -20,11 +20,14 @@ export function CatalogSection() {
   );
 
   return (
-    <section id="packs" className="relative scroll-mt-6 bg-white pb-20 pt-16 sm:pb-24 sm:pt-20">
+    <section className="relative bg-white pb-20 pt-16 sm:pb-24 sm:pt-20">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-8 lg:px-10">
 
 
-        <div className="sticky top-0 z-20 -mx-6 mt-10 border-y border-black/10 bg-white/92 py-4 backdrop-blur-md md:-mx-8 lg:-mx-10">
+        <div
+          id="packs"
+          className="sticky top-0 z-20 -mx-6 mt-10 border-y border-black/10 bg-white/92 py-4 backdrop-blur-md md:-mx-8 lg:-mx-10"
+        >
           <div className="mx-auto flex max-w-[1440px] gap-3 overflow-x-auto px-6 md:px-8 lg:px-10 hide-scrollbar">
             {catalogCategories.map((category) => {
               const isActive = category.id === activeCategory;

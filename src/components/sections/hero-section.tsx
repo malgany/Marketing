@@ -57,7 +57,7 @@ function PrimaryCta() {
       href="#packs"
       className="inline-flex w-fit items-center gap-3 rounded-full bg-black py-1 pr-1 pl-7 text-[1rem] font-medium text-white shadow-[0_14px_28px_rgba(8,8,8,0.08)] transition-colors duration-200 hover:bg-black/85 sm:text-[1.05rem]"
     >
-      <span className="whitespace-nowrap">Ver packs</span>
+      <span className="whitespace-nowrap !text-white">Ver packs</span>
       <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-black">
         <ArrowDown className="size-4" strokeWidth={2.1} />
       </span>
@@ -85,7 +85,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-shell relative isolate min-h-[92svh] overflow-hidden bg-white">
+    <section data-hero-shell className="hero-shell relative isolate min-h-[92svh] overflow-hidden bg-white">
       <div className="absolute inset-0 z-0 hidden pointer-events-none md:block">
         <img
           src="/media/hero-poster.png?v=2"
