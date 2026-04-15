@@ -1,65 +1,31 @@
-import { useEffect, useRef } from "react";
-import { CatalogSection } from "./components/sections/catalog-section";
-import { HeroSection } from "./components/sections/hero-section";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { AdminShell } from "./components/admin/admin-shell";
+import { ProtectedAdminRoute } from "./components/admin/protected-admin-route";
+import { AdminCategoriesPage } from "./pages/admin/categories-page";
+import { AdminLoginPage } from "./pages/admin/login-page";
+import { AdminPackFormPage } from "./pages/admin/pack-form-page";
+import { AdminPacksPage } from "./pages/admin/packs-page";
+import { HomePage } from "./pages/home-page";
+import { PackDetailPage } from "./pages/pack-detail-page";
 
 export default function App() {
-  const snapTimerRef = useRef<number | null>(null);
-  const snapLockedRef = useRef(false);
-
-  useEffect(() => {
-    const clearSnapTimer = () => {
-      if (snapTimerRef.current !== null) {
-        window.clearTimeout(snapTimerRef.current);
-        snapTimerRef.current = null;
-      }
-    };
-
-    const unlockSnapWhenBackAtTop = () => {
-      const hero = document.querySelector<HTMLElement>("[data-hero-shell]");
-
-      if (!hero) {
-        return;
-      }
-
-      if (window.scrollY < hero.offsetHeight * 0.2) {
-        snapLockedRef.current = false;
-      }
-    };
-
-    const maybeSnapToPacks = () => {
-      const hero = document.querySelector<HTMLElement>("[data-hero-shell]");
-      const packs = document.getElementById("packs");
-
-      if (!hero || !packs || snapLockedRef.current) {
-        return;
-      }
-
-      if (window.scrollY <= hero.offsetHeight * 0.3) {
-        return;
-      }
-
-      snapLockedRef.current = true;
-      packs.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
-
-    const onScroll = () => {
-      unlockSnapWhenBackAtTop();
-      clearSnapTimer();
-      snapTimerRef.current = window.setTimeout(maybeSnapToPacks, 120);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      clearSnapTimer();
-    };
-  }, []);
-
   return (
-    <main className="relative bg-white text-[#080808]">
-      <HeroSection />
-      <CatalogSection />
-    </main>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/packs/:slug" element={<PackDetailPage />} />
+      <Route path="/admin/login" element={<AdminLoginPage />} />
+
+      <Route element={<ProtectedAdminRoute />}>
+        <Route element={<AdminShell />}>
+          <Route path="/admin" element={<Navigate to="/admin/packs" replace />} />
+          <Route path="/admin/packs" element={<AdminPacksPage />} />
+          <Route path="/admin/packs/new" element={<AdminPackFormPage />} />
+          <Route path="/admin/packs/:id/edit" element={<AdminPackFormPage />} />
+          <Route path="/admin/categories" element={<AdminCategoriesPage />} />
+        </Route>
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }

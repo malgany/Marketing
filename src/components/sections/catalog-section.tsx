@@ -1,22 +1,73 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { catalogCategories, catalogItems } from "../../data/catalog";
+import { Link } from "react-router-dom";
+import { listPublishedCatalog } from "../../data/packs";
+import { hasSupabaseConfig } from "../../lib/supabase";
+import { resolveMediaUrl } from "../../lib/storage";
 import { cn } from "../../lib/utils";
+import type { Category, PackSummary } from "../../types/packs";
 
 export function CatalogSection() {
-  const [activeCategory, setActiveCategory] = useState(catalogCategories[0].id);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [items, setItems] = useState<PackSummary[]>([]);
+  const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error" | "config">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadCatalog = async () => {
+      if (!hasSupabaseConfig) {
+        setStatus("config");
+        return;
+      }
+
+      setStatus("loading");
+
+      try {
+        const catalog = await listPublishedCatalog();
+
+        if (!isMounted) {
+          return;
+        }
+
+        setCategories(catalog.categories);
+        setItems(catalog.packs);
+        setStatus("ready");
+      } catch (error) {
+        if (!isMounted) {
+          return;
+        }
+
+        setErrorMessage(error instanceof Error ? error.message : "Nao foi possivel carregar os packs.");
+        setStatus("error");
+      }
+    };
+
+    void loadCatalog();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const catalogCategories = useMemo(
+    () => [{ id: "all", label: "Todos" }, ...categories.map((category) => ({ id: category.id, label: category.name }))],
+    [categories]
+  );
 
   const filteredItems = useMemo(() => {
     if (activeCategory === "all") {
-      return catalogItems;
+      return items;
     }
 
-    return catalogItems.filter((item) => item.categoryId === activeCategory);
-  }, [activeCategory]);
+    return items.filter((item) => item.categoryId === activeCategory);
+  }, [activeCategory, items]);
 
   const categoryLabels = useMemo(
-    () => new Map(catalogCategories.map((category) => [category.id, category.label])),
-    []
+    () => new Map(categories.map((category) => [category.id, category.name])),
+    [categories]
   );
 
   return (
@@ -52,24 +103,52 @@ export function CatalogSection() {
           </div>
         </div>
 
+        {status === "loading" ? (
+          <div className="mt-8 rounded-[8px] border border-black/10 bg-white p-8 text-[1rem] text-black/64">
+            Carregando packs...
+          </div>
+        ) : null}
+
+        {status === "config" ? (
+          <div className="mt-8 rounded-[8px] border border-black/10 bg-[#f8f8f8] p-8">
+            <h2 className="text-[1.35rem] font-semibold text-black">Conteudo indisponivel</h2>
+            <p className="mt-3 max-w-[42rem] text-[1rem] leading-[1.55] text-black/68">
+              A vitrine sera exibida assim que tudo estiver pronto.
+            </p>
+          </div>
+        ) : null}
+
+        {status === "error" ? (
+          <div className="mt-8 rounded-[8px] border border-red-200 bg-red-50 p-8 text-red-900">
+            {errorMessage}
+          </div>
+        ) : null}
+
+        {status === "ready" && filteredItems.length === 0 ? (
+          <div className="mt-8 rounded-[8px] border border-black/10 bg-white p-8 text-[1rem] text-black/64">
+            Nenhum pack publicado encontrado.
+          </div>
+        ) : null}
+
         <div className="catalog-grid mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item) => (
-            <a
+            <Link
               key={item.id}
-              href={item.href}
-              onClick={(event) => {
-                if (item.href === "#") {
-                  event.preventDefault();
-                }
-              }}
+              to={`/packs/${item.slug}`}
               className="group flex h-full flex-col rounded-[8px] border border-black/10 bg-white p-3 shadow-[0_12px_32px_rgba(8,8,8,0.05)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-black/18 hover:shadow-[0_18px_42px_rgba(8,8,8,0.09)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
             >
               <div className="overflow-hidden rounded-[8px] bg-[#f4f1ea]">
-                <img
-                  src={item.imageSrc}
-                  alt={item.title}
-                  className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
+                {resolveMediaUrl(item.thumbnailImage) ? (
+                  <img
+                    src={resolveMediaUrl(item.thumbnailImage)}
+                    alt={item.title}
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div className="flex aspect-[4/5] w-full items-center justify-center px-6 text-center text-[1rem] font-medium text-black/42">
+                    Sem imagem
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-1 flex-col px-1 pb-1 pt-4">
@@ -90,7 +169,7 @@ export function CatalogSection() {
                     overflow: "hidden"
                   }}
                 >
-                  {item.description}
+                  {item.shortDescription}
                 </p>
 
                 <span className="mt-5 inline-flex items-center gap-2 text-[0.96rem] font-medium text-black">
@@ -98,7 +177,7 @@ export function CatalogSection() {
                   <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
