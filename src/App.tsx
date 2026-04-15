@@ -34,7 +34,7 @@ export default function App() {
         return;
       }
 
-      if (window.scrollY <= hero.offsetHeight * 0.5) {
+      if (window.scrollY <= hero.offsetHeight * 0.3) {
         return;
       }
 
