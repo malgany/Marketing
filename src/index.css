@@ -45,3 +45,21 @@ a {
 .font-display {
   font-family: "Anton", sans-serif;
 }
+
+@media (width: 1024px) and (height: 1342px) {
+  .hero-bottom-row {
+    margin-top: 36rem;
+  }
+}
+
+@media (width: 1248px) and (height: 832px) {
+  .hero-bottom-row {
+    margin-top: 18rem;
+  }
+}
+
+@media (width: 1440px) and (height: 900px) {
+  .hero-bottom-row {
+    margin-top: 18rem;
+  }
+}

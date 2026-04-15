@@ -122,11 +122,11 @@ export default function App() {
         </nav>
       </header>
 
-      <section className="relative z-10 flex min-h-0 flex-1 flex-col px-6 pb-6 pt-4 lg:px-12 lg:pb-7 lg:pt-5">
+      <section className="relative z-10 flex min-h-0 flex-1 flex-col px-6 pb-28 pt-4 lg:px-12 lg:pb-7 lg:pt-5">
         <div className="flex min-h-0 flex-1 flex-col">
           <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,0.84fr)_minmax(21rem,0.66fr)] lg:gap-14">
             <div className="max-w-[25rem]">
-              <h1 className="font-display flex flex-col gap-1 text-[3rem] leading-[0.85] tracking-tight text-black lg:text-[3.75rem]">
+              <h1 className="font-display flex flex-col gap-1 text-[3rem] leading-[0.9] tracking-tight text-black lg:text-[3.75rem]">
                 <span className="block">PACKS PRONTOS</span>
                 <span className="block">PARA EDITAR</span>
                 <span className="block">E POSTAR</span>
@@ -144,8 +144,8 @@ export default function App() {
             />
           </div>
 
-          <div className="mt-8 grid items-start gap-8 lg:mt-[24rem] lg:max-xl:mt-[20rem] lg:grid-cols-[minmax(0,0.84fr)_minmax(21rem,0.66fr)] lg:gap-14">
-            <div className="mt-[24rem] max-w-[24rem] lg:mt-0">
+          <div className="hero-bottom-row mt-auto grid items-start gap-8 lg:mt-[24rem] lg:max-xl:mt-[28rem] lg:grid-cols-[minmax(0,0.84fr)_minmax(21rem,0.66fr)] lg:gap-14">
+            <div className="max-w-[24rem] lg:mt-0">
               <p className="text-[1.03rem] leading-[1.42] text-[#1a1a1a] lg:text-[1.08rem]">
                 Para pequenas empresas e empreendedores que precisam manter as redes em dia
                 com mais praticidade, rapidez e organização.
