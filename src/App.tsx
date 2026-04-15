@@ -1,4 +1,4 @@
-import { useState, useEffect, type ComponentProps } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
 import { ArrowDown } from "lucide-react";
 import { VideoBackground } from "./components/media/video-background";
 import { cn } from "./lib/utils";
@@ -40,52 +40,42 @@ function StatBlock({ title, body }: { title: string; body: string }) {
 
 export default function App() {
   const [videoEnded, setVideoEnded] = useState(false);
-  const [isLargeDesktop, setIsLargeDesktop] = useState(false);
   const [shouldPlayVideo, setShouldPlayVideo] = useState(true);
 
   useEffect(() => {
-    const checkViewportAndNetwork = () => {
-      // Verifica tamanho da tela
-      setIsLargeDesktop(window.innerWidth >= 1440);
+    const conn = (navigator as any).connection;
+    const isSlow =
+      conn && (["slow-2g", "2g", "3g"].includes(conn.effectiveType) || conn.saveData);
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-      // Detecção de Rede e Performance
-      const conn = (navigator as any).connection;
-      const isSlow = conn && (['slow-2g', '2g', '3g'].includes(conn.effectiveType) || conn.saveData);
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
-      // Se a conexão for lenta ou o hardware for limitado, desativamos o vídeo para economizar recursos
-      if (isSlow || prefersReducedMotion) {
-        setShouldPlayVideo(false);
-      }
-    };
-    
-    checkViewportAndNetwork();
-    window.addEventListener("resize", checkViewportAndNetwork);
-    return () => window.removeEventListener("resize", checkViewportAndNetwork);
+    if (isSlow || prefersReducedMotion) {
+      setShouldPlayVideo(false);
+    }
   }, []);
-
 
   return (
     <main
       className="relative flex h-[100svh] flex-col overflow-hidden bg-[#f5f3ee] text-[#080808]"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
-      {/* Camada de Poster (FICA SEMPRE NO FUNDO) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img
-          src={isLargeDesktop ? "/media/hero-poster-last-frame.png?v=2" : "/media/hero-poster.png?v=2"}
+          src="/media/hero-poster.png?v=2"
           alt=""
           className="h-full w-full object-cover object-center transition-opacity duration-700"
           loading="eager"
         />
       </div>
 
-      {/* Camada de Vídeo (FICA POR CIMA E DESAPARECE NO FINAL) */}
       {shouldPlayVideo && (
-        <div className={cn(
-          "fixed inset-0 z-[1] pointer-events-none transition-opacity duration-[1500ms] ease-in-out",
-          videoEnded ? "opacity-0" : "opacity-100"
-        )}>
+        <div
+          className={cn(
+            "fixed inset-0 z-[1] pointer-events-none transition-opacity duration-[1500ms] ease-in-out",
+            videoEnded ? "opacity-0" : "opacity-100"
+          )}
+        >
           <VideoBackground
             src="/media/hero-presentation-original.mp4?v=2"
             poster="/media/hero-poster.png?v=2"
@@ -99,7 +89,6 @@ export default function App() {
         </div>
       )}
 
-      {/* Overlay de gradiente para legibilidade */}
       <div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0)_8%,rgba(245,243,238,0.05)_48%,rgba(245,243,238,0.22)_100%)]" />
 
       <header className="relative z-10 flex-shrink-0 px-6 py-4 lg:px-12 lg:py-5">
@@ -147,7 +136,6 @@ export default function App() {
                 Artes e materiais para redes sociais, organizados para você escolher rápido,
                 editar em minutos e comprar sem complicação.
               </p>
-
             </div>
 
             <StatBlock
@@ -202,7 +190,6 @@ export default function App() {
               body="Encontre packs por tema, formato e objetivo para decidir mais rápido e comprar com clareza."
             />
           </div>
-
         </div>
       </section>
 
