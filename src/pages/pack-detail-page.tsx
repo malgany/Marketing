@@ -459,7 +459,7 @@ export function PackDetailPage() {
 
       <section className="py-14 sm:py-18">
         <div className="mx-auto w-full max-w-[980px] px-6 md:px-8 lg:px-10">
-          <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] leading-[0.9]">Duvidas frequentes</h2>
+          <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] leading-[0.9]">Dúvidas frequentes</h2>
           <div className="mt-8 divide-y divide-black/10 rounded-[8px] border border-black/10">
             {faqs.map((faq) => (
               <details key={faq.question} className="group p-5">
