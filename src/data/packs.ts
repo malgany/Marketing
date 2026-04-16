@@ -213,6 +213,7 @@ export async function getPublishedPackBySlug(slug: string): Promise<PackDetail |
     price: toPrice(priceResult.data),
     benefits: benefitsResult.data.map(toBenefit),
     posts: media.filter((item) => item.sectionType === "posts"),
+    feed: media.filter((item) => item.sectionType === "feed"),
     stories: media.filter((item) => item.sectionType === "stories"),
     carouselGroups: groupCarousels(media)
   };
