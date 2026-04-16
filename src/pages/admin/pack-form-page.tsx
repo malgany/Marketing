@@ -255,6 +255,31 @@ export function AdminPackFormPage() {
     }
   };
 
+  const handleMainUpload = async (area: "thumb" | "cover", files: FileList | null) => {
+    const file = files?.[0];
+    if (!file) return;
+
+    setUploading(`Enviando ${area === "thumb" ? "thumbnail" : "capa"}...`);
+    setMessage("");
+
+    try {
+      const path = await uploadPackAsset({
+        slug: form.slug,
+        area: area,
+        file
+      });
+
+      setForm((current) => ({
+        ...current,
+        [area === "thumb" ? "thumbnailImage" : "heroImage"]: path
+      }));
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Nao foi possivel enviar a imagem.");
+    } finally {
+      setUploading("");
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSaving(true);
