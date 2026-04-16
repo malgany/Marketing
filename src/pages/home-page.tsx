@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CatalogSection } from "../components/sections/catalog-section";
 import { HeroSection } from "../components/sections/hero-section";
+import { Footer } from "../components/layout/footer";
 
 export function HomePage() {
   const snapTimerRef = useRef<number | null>(null);
@@ -60,6 +61,7 @@ export function HomePage() {
     <main className="relative bg-white text-[#080808]">
       <HeroSection />
       <CatalogSection />
+      <Footer />
     </main>
   );
 }

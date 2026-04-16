@@ -7,6 +7,7 @@ import { hasSupabaseConfig } from "../lib/supabase";
 import { resolveMediaUrl } from "../lib/storage";
 import { cn } from "../lib/utils";
 import type { CarouselGroup, PackDetail, PackMedia } from "../types/packs";
+import { Footer } from "../components/layout/footer";
 
 const testimonials = [
   {
@@ -504,6 +505,8 @@ export function PackDetailPage() {
           />
         </div>
       ) : null}
+
+      <Footer />
     </main>
   );
 }
