@@ -2,7 +2,7 @@ import { requireSupabase, supabase } from "./supabase";
 
 export const PACK_MEDIA_BUCKET = "pack-media";
 
-type UploadArea = "thumb" | "cover" | "posts" | "stories" | "carousels";
+type UploadArea = "thumb" | "cover" | "posts" | "feed" | "stories" | "carousels";
 
 export function resolveMediaUrl(path: string | null | undefined) {
   const value = path?.trim();
