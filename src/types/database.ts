@@ -131,7 +131,7 @@ export type Database = {
         {
           id: string;
           pack_id: string;
-          section_type: "posts" | "carousel" | "stories";
+          section_type: "posts" | "feed" | "carousel" | "stories";
           group_key: string | null;
           group_sort_order: number;
           file_path: string;
@@ -143,7 +143,7 @@ export type Database = {
         {
           id?: string;
           pack_id: string;
-          section_type: "posts" | "carousel" | "stories";
+          section_type: "posts" | "feed" | "carousel" | "stories";
           group_key?: string | null;
           group_sort_order?: number;
           file_path: string;

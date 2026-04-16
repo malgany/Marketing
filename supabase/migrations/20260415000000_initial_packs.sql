@@ -75,7 +75,7 @@ create table if not exists public.pack_benefits (
 create table if not exists public.pack_media (
   id uuid primary key default gen_random_uuid(),
   pack_id uuid not null references public.packs(id) on delete cascade,
-  section_type text not null check (section_type in ('posts', 'carousel', 'stories')),
+  section_type text not null check (section_type in ('posts', 'feed', 'carousel', 'stories')),
   group_key text,
   group_sort_order integer not null default 0,
   file_path text not null,
