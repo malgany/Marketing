@@ -12,21 +12,16 @@ export function AboutPage() {
             Brandly
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-[1rem] font-medium">
-            <Link to="/" className="hover:opacity-50 transition-opacity">Voltar ao Início</Link>
+            <Link to="/" className="flex items-center gap-2 hover:opacity-50 transition-opacity">
+              <ArrowLeft className="size-4" />
+              Voltar ao Início
+            </Link>
           </nav>
         </div>
       </header>
 
       <main className="pt-32 pb-20">
         <div className="mx-auto max-w-[1440px] px-6 md:px-8 lg:px-10">
-          <Link 
-            to="/" 
-            className="inline-flex items-center gap-2 text-black/60 hover:text-black transition-colors mb-12 text-sm uppercase tracking-widest font-bold"
-          >
-            <ArrowLeft className="size-4" />
-            Votar para o início
-          </Link>
-
           <div className="max-w-4xl">
             <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-display leading-[1.1] mb-8 tracking-tight">
               Não somos uma agência.<br/>
