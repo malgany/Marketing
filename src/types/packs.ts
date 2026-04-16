@@ -1,5 +1,5 @@
 export type PackStatus = "draft" | "published";
-export type PackMediaSection = "posts" | "carousel" | "stories";
+export type PackMediaSection = "posts" | "feed" | "carousel" | "stories";
 
 export type Category = {
   id: string;
@@ -68,6 +68,7 @@ export type PackDetail = PackSummary & {
   price: PackPrice | null;
   benefits: PackBenefit[];
   posts: PackMedia[];
+  feed: PackMedia[];
   stories: PackMedia[];
   carouselGroups: CarouselGroup[];
 };

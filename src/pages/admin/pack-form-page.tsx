@@ -27,12 +27,14 @@ const dangerButtonClass =
 
 const mediaSectionLabels: Record<PackMediaSection, string> = {
   posts: "Posts",
+  feed: "Feed",
   carousel: "Carrossel",
   stories: "Stories"
 };
 
 const mediaSectionHints: Record<PackMediaSection, string> = {
-  posts: "Sequencia solta para a grade principal.",
+  posts: "Imagens quadradas (1:1) para a grade principal.",
+  feed: "Imagens verticais (4:5) para o feed.",
   carousel: "Conjunto agrupado para deslize.",
   stories: "Formato vertical para anuncios, avisos e bastidores."
 };
@@ -46,7 +48,9 @@ function nullableCentsFromInput(value: string) {
 }
 
 function getMediaAspectClass(sectionType: PackMediaSection) {
-  return sectionType === "stories" ? "aspect-[9/16]" : "aspect-square";
+  if (sectionType === "stories") return "aspect-[9/16]";
+  if (sectionType === "feed" || sectionType === "carousel") return "aspect-[4/5]";
+  return "aspect-square";
 }
 
 function FileUploadButton({
@@ -312,6 +316,7 @@ export function AdminPackFormPage() {
   const heroPreviewUrl = resolveMediaUrl(form.heroImage);
   const mediaEntries = form.media.map((media, index) => ({ media, index }));
   const postEntries = mediaEntries.filter(({ media }) => media.sectionType === "posts");
+  const feedEntries = mediaEntries.filter(({ media }) => media.sectionType === "feed");
   const carouselEntries = mediaEntries.filter(({ media }) => media.sectionType === "carousel");
   const storyEntries = mediaEntries.filter(({ media }) => media.sectionType === "stories");
   const carouselGroupsCount = new Set(
@@ -408,6 +413,7 @@ export function AdminPackFormPage() {
                 className={inputClass}
               >
                 <option value="posts">Posts</option>
+                <option value="feed">Feed</option>
                 <option value="carousel">Carrossel</option>
                 <option value="stories">Stories</option>
               </select>
@@ -1124,6 +1130,16 @@ export function AdminPackFormPage() {
           entries: postEntries,
           uploadId: "pack-posts-upload",
           uploadLabel: "Enviar posts"
+        })}
+
+        {renderMediaSection({
+          sectionType: "feed",
+          title: "Feed",
+          description: "Imagens verticais para o feed (tamanho 4:5 recomendado).",
+          recommendedLabel: "4:5 recomendado",
+          entries: feedEntries,
+          uploadId: "pack-feed-upload",
+          uploadLabel: "Enviar feed"
         })}
 
         {renderMediaSection({

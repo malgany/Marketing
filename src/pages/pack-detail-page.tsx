@@ -152,10 +152,10 @@ function CarouselPreview({
     <section className="bg-[#f7f7f7] py-14 sm:py-18">
       <div className="mx-auto w-full max-w-[1180px] px-6 md:px-8 lg:px-10">
         <p className="text-center text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/44">
-          Carrossel
+          Criativo
         </p>
         <h2 className="mx-auto mt-3 max-w-[46rem] text-center font-display text-[clamp(2.3rem,5vw,4.8rem)] leading-[0.9] text-black">
-          Sequencias prontas para educar e vender
+          Carrossel
         </h2>
 
         {groups.length > 0 ? (
@@ -398,20 +398,31 @@ export function PackDetailPage() {
       </section>
 
       <GalleryGrid
-        title="Posts prontos para manter o perfil ativo"
-        eyebrow="Posts"
+        title="Posts"
+        eyebrow="Impactantes"
         items={pack.posts}
         aspectClass="aspect-square"
         onOpen={openLightbox}
       />
+
+      {pack.feed && pack.feed.length > 0 ? (
+        <GalleryGrid
+          title="Conteúdos no Feed"
+          eyebrow="Verticais"
+          items={pack.feed}
+          aspectClass="aspect-[4/5]"
+          onOpen={openLightbox}
+        />
+      ) : null}
+
 
       <CarouselPreview groups={pack.carouselGroups} onOpen={openLightbox} />
 
       <CtaButton pack={pack} className="bg-white px-6 py-12 text-center" />
 
       <GalleryGrid
-        title="Stories para ofertas, avisos e bastidores"
-        eyebrow="Stories"
+        title="Stories"
+        eyebrow="Inovadores"
         items={pack.stories}
         aspectClass="aspect-[9/16]"
         onOpen={openLightbox}
