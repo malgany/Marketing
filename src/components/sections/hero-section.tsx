@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 const navigationLinks = [
   { label: "Packs", href: "#packs" },
   { label: "Categorias", href: "#packs" },
-  { label: "Sobre", href: "/sobre" },
+  { label: "Sobre Nós", href: "/sobre" },
   { label: "Contato", href: "#packs" }
 ];
 

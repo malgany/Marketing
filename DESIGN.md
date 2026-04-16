@@ -1,45 +1,44 @@
-Build a single-page hero section for a brand design agency called "Brandly" using React, Tailwind CSS, and Lucide React icons. The entire page is one viewport-height screen with no scrolling. It uses a fullscreen background video with all content layered on top.
+# Brandly Design System & Layout
 
-Fonts (loaded via Google Fonts in index.html):
-Inter (weights: 300, 400, 500, 600, 700) -- used as the base font for the entire page
-Anton (regular 400) -- used for all large uppercase headings
+## Goals
+Build a modern marketing website for "Brandly", a design studio specialized in social media packs. The site focuses on high visual impact, clear typography, and a seamless transition between a cinematic hero section and a product catalog.
 
-Page Container:
-Full viewport height (h-screen), overflow-hidden, flex flex-col
-Background color: #F5F3EE (warm off-white/cream)
-Base font-family set via inline style: fontFamily: 'Inter, sans-serif'
+## Architecture
+- **Multi-page Application**: Built with React Router (v7).
+- **Key Pages**:
+  - `HomePage`: Hero section + Catalog listing.
+  - `PackDetailPage`: Information-rich page with dynamic galleries (Posts, Feed, Stories, Carousels), FAQs, and testimonials.
+  - `AboutPage`: Business positioning as a design studio.
+  - `AdminPanel`: Management interface for packs and media.
 
-Background Video:
-A video element with autoPlay, loop, muted, playsInline
-Positioned fixed top-0 left-0 w-full h-full object-cover pointer-events-none with zIndex: 0
-Video source URL: https://d39qrw7a9vnyeo.cloudfront.net/cards/xportfolio-hero/prompt-video-20260407-050648-9a791d.mp4
-Type: video/mp4
+## Visual Identity
+- **Primary Font**: Inter (loaded via Google Fonts). Used for body text and functional UI.
+- **Display Font**: Custom display font (Anton-like) used via `font-display` class for large uppercase headings.
+- **Color Palette**:
+  - Background: Primary white (#FFFFFF) with sections in light gray (#F7F7F7) or cream (#F4F1EA) to create visual rhythm.
+  - Typography: Pure black (#000000) for high contrast and readability.
+  - Accents: Subtle transparency for hover states and borders.
 
-Header (zIndex: 10):
-relative, padding px-6 lg:px-12 py-4 lg:py-6, flex-shrink-0
-Nav: flex items-center justify-between
-Left: Logo text "Brandly" -- text-2xl lg:text-3xl font-bold text-black
-Center (hidden on mobile, shown md+): Navigation links "About", "Features", "Pricing", "FAQ", "Help" -- flex items-center gap-8 text-base lg:text-lg, color #080808
-Right: Two buttons side by side (flex items-center gap-3):
-"Sign Up" -- px-4 lg:px-6 py-2 text-base lg:text-lg hover:text-black transition, color #080808
-"Log In" -- px-4 lg:px-6 py-2 bg-black text-white text-base lg:text-lg hover:bg-gray-800 transition
+## Hero Section (`src/components/sections/hero-section.tsx`)
+- **Background Media**: Fullscreen video background (`/media/hero-presentation-original.mp4`).
+- **Layout Breakpoints**:
+  - **Large/XL (`lg:`, `xl:`)**: 3-column layout. Heading on the left, video/empty space in the center, stat blocks on the right.
+  - **Medium (`md:`)**: 2-column, 3-row layout. Heading and video above, stat blocks below in a 2-column grid.
+  - **Small/Mobile**: Single-column vertical stack. Video background is hidden.
+- **Main Heading**: "PACKS PRONTOS / PARA EDITAR / E POSTAR".
+- **CTA**: "Ver packs" (primary button with ArrowDown icon).
 
-Main Content Area (zIndex: 10):
-relative, padding px-6 lg:px-12 py-6 lg:py-8, flex-1 flex flex-col justify-between
+## Pack Detail Page (`src/pages/pack-detail-page.tsx`)
+- **Structure**:
+  - Floating/Sticky Header with standard navigation.
+  - Hero image/Description.
+  - Segmented Galleries (Posts, Feed, Stories).
+  - Carousel Preview with grouped images.
+  - Offer Block (Pricing with old price, badge, and installment info).
+  - FAQ and Testimonials sections.
+- **Interactivity**: Lightbox modal for viewing media in full size.
 
-Top Row -- 2 column grid (grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12):
-Left column: Main heading (h1): "BUILDING / BRANDS THAT / RESONATE" in Anton font. text-5xl sm:text-6xl lg:text-6xl xl:text-7xl font-normal text-black leading-[0.80] tracking-tight mb-4 lg:mb-5.
-Subheading: "Thoughtful design that captivates, empowers, and creates lasting impact." text-lg lg:text-xl mb-4 lg:mb-5 max-w-md color #080808
-CTA button: "Start today" with ArrowRight icon in white circle. flex items-center gap-3 pl-8 pr-1.5 py-1.5 bg-black text-white rounded-full hover:bg-gray-800
-
-Right column (text-right): "50+ BRANDS LAUNCHED" heading in Anton, with description paragraph below.
-
-Middle Row -- 2 column grid:
-Left: Brand designer bio paragraph with social icons (Facebook filled, Instagram, Youtube)
-Right: "5+ YEARS IN THE INDUSTRY" heading in Anton with description
-
-Bottom Row -- Brand Logo Bar:
-6 brand cards in grid-cols-6: Frame Blox, Supa Blox, Hype Blox, Hype Blox, Ultra Blox, Ship Blox
-Each with unique abstract icon and white bg rounded-lg card style
-
-Key: No animations, all text black/#080808, default Tailwind config, justify-between layout distribution.
+## Navigation & Interactions
+- **Main Nav**: "Packs", "Categorias", "Sobre Nós", "Contato".
+- **Hover Effects**: Standardized opacity transitions (Logo at 70%, Back links at 50%, Nav links at 60%).
+- **Smooth Scrolling**: Internal links use hash navigation (`#packs`, `#pricing`).

@@ -72,8 +72,8 @@ Site em React/Vite para vitrine e venda de packs editaveis de social media. A ho
 
 - `src/App.tsx`: rotas publicas e admin.
 - `src/data/`: funcoes de leitura e escrita no Supabase.
-- `src/pages/`: home, detalhe do pack e admin.
-- `src/components/`: secoes publicas e shell do admin.
+- `src/pages/`: home, detalhe do pack, quem somos (Sobre Nós) e admin.
+- `src/components/`: secoes publicas (hero, catalog), layout (header, footer) e shell do admin.
 - `supabase/`: migration inicial e seed.
 - `public/media/`: assets locais usados como transicao no seed inicial.
 
