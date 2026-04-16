@@ -7,11 +7,13 @@ import { AdminPackFormPage } from "./pages/admin/pack-form-page";
 import { AdminPacksPage } from "./pages/admin/packs-page";
 import { HomePage } from "./pages/home-page";
 import { PackDetailPage } from "./pages/pack-detail-page";
+import { AboutPage } from "./pages/about-page";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/sobre" element={<AboutPage />} />
       <Route path="/packs/:slug" element={<PackDetailPage />} />
       <Route path="/admin/login" element={<AdminLoginPage />} />
 
