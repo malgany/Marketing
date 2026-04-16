@@ -5,6 +5,7 @@ import { getPublishedPackBySlug } from "../data/packs";
 import { formatCurrency } from "../lib/format";
 import { hasSupabaseConfig } from "../lib/supabase";
 import { resolveMediaUrl } from "../lib/storage";
+import { cn } from "../lib/utils";
 import type { CarouselGroup, PackDetail, PackMedia } from "../types/packs";
 
 const testimonials = [
@@ -96,16 +97,18 @@ function GalleryGrid({
   eyebrow,
   items,
   aspectClass,
+  bgClass = "",
   onOpen
 }: {
   title: string;
   eyebrow: string;
   items: PackMedia[];
   aspectClass: string;
+  bgClass?: string;
   onOpen: (item: PackMedia) => void;
 }) {
   return (
-    <section className="py-14 sm:py-18">
+    <section className={cn("py-14 sm:py-18", bgClass)}>
       <div className="mx-auto w-full max-w-[1180px] px-6 md:px-8 lg:px-10">
         <p className="text-center text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/44">
           {eyebrow}
@@ -153,13 +156,15 @@ function GalleryGrid({
 
 function CarouselPreview({
   groups,
+  bgClass = "bg-[#f7f7f7]",
   onOpen
 }: {
   groups: CarouselGroup[];
+  bgClass?: string;
   onOpen: (item: PackMedia) => void;
 }) {
   return (
-    <section className="bg-[#f7f7f7] py-14 sm:py-18">
+    <section className={cn("py-14 sm:py-18", bgClass)}>
       <div className="mx-auto w-full max-w-[1180px] px-6 md:px-8 lg:px-10">
         <p className="text-center text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/44">
           Criativo
@@ -421,12 +426,13 @@ export function PackDetailPage() {
           eyebrow="Estratégicos"
           items={pack.feed}
           aspectClass="aspect-[4/5]"
+          bgClass="bg-[#f7f7f7]"
           onOpen={openLightbox}
         />
       ) : null}
 
 
-      <CarouselPreview groups={pack.carouselGroups} onOpen={openLightbox} />
+      <CarouselPreview groups={pack.carouselGroups} bgClass="bg-white" onOpen={openLightbox} />
 
       <CtaButton pack={pack} isAnchor className="bg-white px-6 py-12 text-center" />
 
@@ -435,6 +441,7 @@ export function PackDetailPage() {
         eyebrow="Inovadores"
         items={pack.stories}
         aspectClass="aspect-[9/16]"
+        bgClass="bg-[#f7f7f7]"
         onOpen={openLightbox}
       />
 
