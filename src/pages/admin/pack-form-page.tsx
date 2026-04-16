@@ -242,7 +242,7 @@ export function AdminPackFormPage() {
           groupSortOrder: sectionType === "carousel" ? nextGroupOrder : 0,
           filePath: path,
           thumbPath: path,
-          altText: form.title,
+          altText: `${mediaSectionLabels[sectionType]} ${form.title}`,
           sortOrder: nextSortOrder + index * 10,
           active: true
         });

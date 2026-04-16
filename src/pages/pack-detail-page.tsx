@@ -60,16 +60,27 @@ function PaymentStrip() {
   );
 }
 
-function CtaButton({ pack, className = "" }: { pack: PackDetail; className?: string }) {
-  const label = pack.price?.ctaText || "Acesse agora o seu pack";
-  const href = pack.checkoutUrl || "#";
+function CtaButton({ pack, className = "", isAnchor = false, label: customLabel }: { pack: PackDetail; className?: string; isAnchor?: boolean; label?: string }) {
+  const label = customLabel || pack.price?.ctaText || "Acesse agora o seu pack";
+  const href = isAnchor ? "#pricing" : (pack.checkoutUrl || "#");
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isAnchor) {
+      e.preventDefault();
+      const element = document.getElementById("pricing");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <div className={className}>
       <a
         href={href}
-        target={href.startsWith("http") ? "_blank" : undefined}
-        rel={href.startsWith("http") ? "noreferrer" : undefined}
+        target={!isAnchor && href.startsWith("http") ? "_blank" : undefined}
+        rel={!isAnchor && href.startsWith("http") ? "noreferrer" : undefined}
+        onClick={handleClick}
         className="mx-auto inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-black px-7 py-3 text-[0.98rem] font-semibold uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-black/82 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
       >
         <span>{label}</span>
@@ -206,7 +217,7 @@ function CarouselPreview({
 
 function OfferBlock({ pack }: { pack: PackDetail }) {
   return (
-    <section className="py-14 sm:py-18">
+    <section id="pricing" className="py-14 sm:py-18">
       <div className="mx-auto w-full max-w-[980px] px-6 md:px-8 lg:px-10">
         <div className="grid gap-9 rounded-[8px] border border-black/12 bg-white p-6 shadow-[0_18px_50px_rgba(8,8,8,0.07)] md:grid-cols-[1.1fr_0.9fr] md:p-8">
           <div>
@@ -245,7 +256,7 @@ function OfferBlock({ pack }: { pack: PackDetail }) {
             {pack.price?.installmentText ? (
               <p className="mt-3 text-[0.94rem] text-black/58">{pack.price.installmentText}</p>
             ) : null}
-            <CtaButton pack={pack} className="mt-6" />
+            <CtaButton pack={pack} label="EU QUERO ESSE PACK" className="mt-6" />
           </div>
         </div>
       </div>
@@ -392,7 +403,7 @@ export function PackDetailPage() {
           <p className="mx-auto mt-5 max-w-[40rem] text-[1.08rem] leading-[1.55] text-black/68">
             {pack.longDescription || pack.shortDescription}
           </p>
-          <CtaButton pack={pack} className="mt-7" />
+          <CtaButton pack={pack} isAnchor className="mt-7" />
         </div>
       </section>
 
@@ -417,7 +428,7 @@ export function PackDetailPage() {
 
       <CarouselPreview groups={pack.carouselGroups} onOpen={openLightbox} />
 
-      <CtaButton pack={pack} className="bg-white px-6 py-12 text-center" />
+      <CtaButton pack={pack} isAnchor className="bg-white px-6 py-12 text-center" />
 
       <GalleryGrid
         title="Stories"
