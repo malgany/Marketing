@@ -138,8 +138,8 @@ export function HeroSection() {
       </header>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] px-6 pb-14 pt-6 md:px-8 md:pb-16 md:pt-7 lg:px-10 lg:pb-20 lg:pt-6">
-        <div className="grid w-full gap-y-10 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.95fr)] md:grid-rows-[auto_minmax(0,1fr)_auto] md:gap-x-8 md:gap-y-8 xl:grid-cols-[minmax(0,0.94fr)_minmax(21rem,0.92fr)_minmax(17rem,0.68fr)] xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-x-10 xl:gap-y-6">
-          <div className="order-1 flex max-w-[28rem] flex-col gap-6 md:col-start-1 md:row-start-1 md:gap-7 xl:max-w-[30rem] xl:self-start xl:pt-3">
+        <div className="grid w-full gap-y-10 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.95fr)] md:grid-rows-[auto_minmax(0,1fr)_auto] md:gap-x-8 md:gap-y-8 lg:grid-cols-[minmax(0,0.94fr)_minmax(21rem,0.92fr)_minmax(17rem,0.68fr)] lg:grid-rows-[auto_minmax(0,1fr)] lg:gap-x-10 lg:gap-y-6">
+          <div className="order-1 flex max-w-[28rem] flex-col gap-6 md:col-start-1 md:row-start-1 md:gap-7 lg:max-w-[30rem] lg:self-start lg:pt-3">
             <div>
               <h1 className="font-display flex flex-col gap-1 text-[clamp(3.7rem,7vw,6.25rem)] leading-[0.86] text-black">
                 <span className="block">PACKS PRONTOS</span>
@@ -156,14 +156,14 @@ export function HeroSection() {
             <PrimaryCta />
           </div>
 
-          <div className="order-2 hidden items-center justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:flex md:self-center xl:col-start-2 xl:row-span-2 xl:row-start-1">
+          <div className="order-2 hidden items-center justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:flex md:self-center lg:col-start-2 lg:row-span-2 lg:row-start-1">
             <div
               aria-hidden="true"
               className="aspect-[4/5] w-full max-w-[clamp(17rem,31vw,34rem)]"
             />
           </div>
 
-          <div className="order-3 max-w-[28rem] md:col-start-1 md:row-start-2 md:max-w-[25rem] md:self-end xl:row-start-2 xl:pb-3">
+          <div className="order-3 max-w-[28rem] md:col-start-1 md:row-start-2 md:max-w-[25rem] md:self-end lg:row-start-2 lg:pb-3">
             <p className="text-[1.03rem] leading-[1.45] text-[#1a1a1a] md:text-[1.08rem]">
               Para pequenas empresas e empreendedores que precisam manter as redes em dia
               com mais praticidade, rapidez e organizacao.
@@ -203,17 +203,17 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="order-4 mt-2 grid gap-10 pt-10 md:col-span-2 md:row-start-3 md:mt-0 md:grid-cols-2 md:gap-10 md:pt-8 xl:col-span-1 xl:col-start-3 xl:row-span-2 xl:row-start-1 xl:grid-cols-1 xl:content-between xl:pt-3">
+          <div className="order-4 mt-2 grid gap-10 pt-10 md:col-span-2 md:row-start-3 md:mt-0 md:grid-cols-2 md:gap-10 md:pt-8 lg:col-span-1 lg:col-start-3 lg:row-span-2 lg:row-start-1 lg:grid-cols-1 lg:content-between lg:pt-3">
             <StatBlock
               title="PRONTO PARA EDITAR"
               body="Escolha o pack ideal, ajuste textos, cores e informacoes e publique sem comecar do zero."
-              className="xl:ml-auto xl:text-right"
+              className="lg:ml-auto lg:text-right"
             />
 
             <StatBlock
               title="TUDO ORGANIZADO"
               body="Encontre packs por tema, formato e objetivo para decidir mais rapido e comprar com clareza."
-              className="xl:ml-auto xl:text-right xl:self-end"
+              className="lg:ml-auto lg:text-right lg:self-end"
             />
           </div>
         </div>
