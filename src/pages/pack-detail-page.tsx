@@ -54,7 +54,7 @@ function PaymentStrip() {
       <img
         src="/media/payment-methods.png"
         alt="Formas de pagamento: PIX, Cartões e Boleto"
-        className="h-6 w-auto object-contain opacity-50 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+        className="h-8 w-auto object-contain opacity-60 grayscale transition-all hover:opacity-100 hover:grayscale-0"
       />
     </div>
   );
