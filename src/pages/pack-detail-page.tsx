@@ -50,13 +50,12 @@ const faqs = [
 
 function PaymentStrip() {
   return (
-    <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-[0.76rem] font-semibold uppercase tracking-[0.08em] text-black/44">
-      <span>PIX</span>
-      <span>Visa</span>
-      <span>Mastercard</span>
-      <span>Elo</span>
-      <span>Hipercard</span>
-      <span>Boleto</span>
+    <div className="mt-5 flex items-center justify-center">
+      <img
+        src="/media/payment-methods.png"
+        alt="Formas de pagamento: PIX, Cartões e Boleto"
+        className="h-6 w-auto object-contain opacity-50 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+      />
     </div>
   );
 }
