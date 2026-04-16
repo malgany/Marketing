@@ -380,10 +380,10 @@ export function PackDetailPage() {
     <main className="bg-white text-black">
       <header className="sticky top-0 z-30 border-b border-black/10 bg-white/92 backdrop-blur-md">
         <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-5 px-6 py-4 md:px-8 lg:px-10">
-          <Link to="/" className="text-[1.85rem] font-semibold leading-none">
+          <Link to="/" className="text-[1.85rem] font-semibold leading-none hover:opacity-70 transition-opacity">
             Brandly
           </Link>
-          <Link to="/#packs" className="inline-flex items-center gap-2 text-[0.96rem] font-medium">
+          <Link to="/#packs" className="inline-flex items-center gap-2 text-[0.96rem] font-medium hover:opacity-50 transition-opacity">
             <ArrowLeft className="size-4" />
             Ver outros packs
           </Link>
