@@ -407,8 +407,8 @@ export function PackDetailPage() {
 
       {pack.feed && pack.feed.length > 0 ? (
         <GalleryGrid
-          title="Conteúdos no Feed"
-          eyebrow="Verticais"
+          title="Feed"
+          eyebrow="Estratégicos"
           items={pack.feed}
           aspectClass="aspect-[4/5]"
           onOpen={openLightbox}
