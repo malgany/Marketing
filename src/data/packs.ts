@@ -20,6 +20,36 @@ function normalizeText(value: string | null | undefined) {
   return value ?? "";
 }
 
+function toErrorMessage(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (error && typeof error === "object") {
+    const candidate = error as {
+      message?: unknown;
+      code?: unknown;
+      details?: unknown;
+      hint?: unknown;
+      status?: unknown;
+    };
+
+    const parts = [
+      typeof candidate.message === "string" ? candidate.message : "",
+      typeof candidate.code === "string" ? `code=${candidate.code}` : "",
+      typeof candidate.status === "number" ? `status=${candidate.status}` : "",
+      typeof candidate.details === "string" ? `details=${candidate.details}` : "",
+      typeof candidate.hint === "string" ? `hint=${candidate.hint}` : ""
+    ].filter(Boolean);
+
+    if (parts.length > 0) {
+      return parts.join(" | ");
+    }
+  }
+
+  return String(error);
+}
+
 export function toCategory(row: CategoryRow): Category {
   return {
     id: row.id,
@@ -131,11 +161,11 @@ export async function listPublishedCatalog() {
   ]);
 
   if (categoriesResult.error) {
-    throw categoriesResult.error;
+    throw new Error(`Falha ao carregar categories: ${toErrorMessage(categoriesResult.error)}`);
   }
 
   if (packsResult.error) {
-    throw packsResult.error;
+    throw new Error(`Falha ao carregar packs: ${toErrorMessage(packsResult.error)}`);
   }
 
   const categories = categoriesResult.data.map(toCategory);

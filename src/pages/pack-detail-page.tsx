@@ -49,7 +49,19 @@ function PaymentStrip() {
   );
 }
 
-function CtaButton({ pack, className = "", isAnchor = false, label: customLabel }: { pack: PackDetail; className?: string; isAnchor?: boolean; label?: string }) {
+function CtaButton({
+  pack,
+  className = "",
+  isAnchor = false,
+  highlight = false,
+  label: customLabel
+}: {
+  pack: PackDetail;
+  className?: string;
+  isAnchor?: boolean;
+  highlight?: boolean;
+  label?: string;
+}) {
   const label = customLabel || pack.price?.ctaText || "Acesse agora o seu pack";
   const href = isAnchor ? "#pricing" : (pack.checkoutUrl || "#");
 
@@ -70,7 +82,12 @@ function CtaButton({ pack, className = "", isAnchor = false, label: customLabel 
         target={!isAnchor && href.startsWith("http") ? "_blank" : undefined}
         rel={!isAnchor && href.startsWith("http") ? "noreferrer" : undefined}
         onClick={handleClick}
-        className="mx-auto inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-black px-7 py-3 text-[0.98rem] font-semibold uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-black/82 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+        className={cn(
+          "mx-auto inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] px-7 py-3 text-[0.98rem] font-semibold uppercase tracking-[0.04em] text-white transition-[background-color,border-color,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4",
+          highlight
+            ? "border border-red-500/70 bg-red-600 shadow-[0_12px_36px_rgba(220,38,38,0.24)] hover:bg-red-500 hover:border-red-400 hover:shadow-[0_16px_42px_rgba(220,38,38,0.28)] focus-visible:ring-red-500"
+            : "border border-black/12 bg-black hover:bg-black/82 focus-visible:ring-black"
+        )}
       >
         <span>{label}</span>
         <ArrowUpRight className="size-4" />
@@ -251,7 +268,7 @@ function OfferBlock({ pack }: { pack: PackDetail }) {
             {pack.price?.installmentText ? (
               <p className="mt-3 text-[0.94rem] text-black/58">{pack.price.installmentText}</p>
             ) : null}
-            <CtaButton pack={pack} label="EU QUERO ESSE PACK" className="mt-6" />
+            <CtaButton pack={pack} label="EU QUERO ESSE PACK" highlight className="mt-6" />
           </div>
         </div>
       </div>

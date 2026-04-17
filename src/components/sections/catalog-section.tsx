@@ -7,6 +7,14 @@ import { resolveMediaUrl } from "../../lib/storage";
 import { cn } from "../../lib/utils";
 import type { Category, PackSummary } from "../../types/packs";
 
+function getCatalogErrorMessage(error: unknown) {
+  if (error instanceof TypeError && error.message === "Failed to fetch") {
+    return "Nao foi possivel conectar ao catalogo.";
+  }
+
+  return error instanceof Error ? error.message : "Nao foi possivel carregar os packs.";
+}
+
 export function CatalogSection() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [categories, setCategories] = useState<Category[]>([]);
@@ -40,8 +48,7 @@ export function CatalogSection() {
           return;
         }
 
-        setErrorMessage(error instanceof Error ? error.message : "Não foi possível carregar os packs.");
-
+        setErrorMessage(getCatalogErrorMessage(error));
         setStatus("error");
       }
     };
@@ -74,8 +81,6 @@ export function CatalogSection() {
   return (
     <section className="relative bg-white pb-20 pt-16 sm:pb-24 sm:pt-20">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-8 lg:px-10">
-
-
         <div
           id="packs"
           className="sticky top-0 z-20 -mx-6 mt-10 border-y border-black/10 bg-white/92 py-4 backdrop-blur-md md:-mx-8 lg:-mx-10"
@@ -112,17 +117,16 @@ export function CatalogSection() {
 
         {status === "config" ? (
           <div className="mt-8 rounded-[8px] border border-black/10 bg-[#f8f8f8] p-8">
-            <h2 className="text-[1.35rem] font-semibold text-black">Conteúdo indisponível</h2>
+            <h2 className="text-[1.35rem] font-semibold text-black">Conteudo indisponivel</h2>
             <p className="mt-3 max-w-[42rem] text-[1rem] leading-[1.55] text-black/68">
-              A vitrine será exibida assim que tudo estiver pronto.
+              A vitrine sera exibida assim que tudo estiver pronto.
             </p>
           </div>
-
         ) : null}
 
         {status === "error" ? (
           <div className="mt-8 rounded-[8px] border border-red-200 bg-red-50 p-8 text-red-900">
-            {errorMessage}
+            <p>{errorMessage}</p>
           </div>
         ) : null}
 
