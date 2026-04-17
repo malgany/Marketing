@@ -40,7 +40,8 @@ export function CatalogSection() {
           return;
         }
 
-        setErrorMessage(error instanceof Error ? error.message : "Nao foi possivel carregar os packs.");
+        setErrorMessage(error instanceof Error ? error.message : "Não foi possível carregar os packs.");
+
         setStatus("error");
       }
     };
@@ -111,11 +112,12 @@ export function CatalogSection() {
 
         {status === "config" ? (
           <div className="mt-8 rounded-[8px] border border-black/10 bg-[#f8f8f8] p-8">
-            <h2 className="text-[1.35rem] font-semibold text-black">Conteudo indisponivel</h2>
+            <h2 className="text-[1.35rem] font-semibold text-black">Conteúdo indisponível</h2>
             <p className="mt-3 max-w-[42rem] text-[1rem] leading-[1.55] text-black/68">
-              A vitrine sera exibida assim que tudo estiver pronto.
+              A vitrine será exibida assim que tudo estiver pronto.
             </p>
           </div>
+
         ) : null}
 
         {status === "error" ? (

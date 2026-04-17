@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Renata Silva",
+    "location": "Florianópolis",
+    "text": "Salvei dias de criação e deixei o perfil com uma linha visual muito mais profissional.",
+    "stars": 5
+  },
+  {
+    "name": "Bruno Martins",
+    "location": "Belo Horizonte",
+    "text": "O material veio organizado, fácil de editar e pronto para adaptar para minha rotina.",
+    "stars": 5
+  },
+  {
+    "name": "Mariana Lopes",
+    "location": "Campinas",
+    "text": "Consegui publicar campanhas com mais consistência sem depender de uma arte nova todo dia.",
+    "stars": 5
+  },
+  {
+    "name": "Juliana Costa",
+    "location": "São Paulo",
+    "text": "Praticidade define. Agora consigo focar na estratégia enquanto o visual já está garantido.",
+    "stars": 5
+  },
+  {
+    "name": "Ricardo Alves",
+    "location": "Curitiba",
+    "text": "Melhor investimento para o meu perfil este ano. O engajamento subiu visivelmente.",
+    "stars": 5
+  }
+]

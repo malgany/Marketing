@@ -8,47 +8,34 @@ import { resolveMediaUrl } from "../lib/storage";
 import { cn } from "../lib/utils";
 import type { CarouselGroup, PackDetail, PackMedia } from "../types/packs";
 import { Footer } from "../components/layout/footer";
+import { TestimonialCarousel } from "../components/sections/testimonial-carousel";
 
-const testimonials = [
-  {
-    name: "Renata Silva",
-    location: "Florianopolis",
-    text: "Salvei dias de criacao e deixei o perfil com uma linha visual muito mais profissional."
-  },
-  {
-    name: "Bruno Martins",
-    location: "Belo Horizonte",
-    text: "O material veio organizado, facil de editar e pronto para adaptar para minha rotina."
-  },
-  {
-    name: "Mariana Lopes",
-    location: "Campinas",
-    text: "Consegui publicar campanhas com mais consistencia sem depender de uma arte nova todo dia."
-  }
-];
+
+
 
 const faqs = [
   {
-    question: "Como funciona o acesso ao conteudo?",
-    answer: "Apos a compra, voce recebe o link de acesso ao material do pack."
+    question: "Como funciona o acesso ao conteúdo?",
+    answer: "Após a compra, você recebe o link de acesso ao material do pack."
   },
   {
     question: "Posso editar as artes?",
-    answer: "Sim. Os modelos foram pensados para edicao rapida de textos, cores e informacoes."
+    answer: "Sim. Os modelos foram pensados para edição rápida de textos, cores e informações."
   },
   {
     question: "O pack serve para qualquer nicho?",
-    answer: "Cada pack e organizado para um nicho especifico, com textos e formatos alinhados ao tema."
+    answer: "Cada pack é organizado para um nicho específico, com textos e formatos alinhados ao tema."
   },
   {
     question: "Preciso saber design para usar?",
-    answer: "Nao. A estrutura ja vem pronta para voce ajustar as informacoes principais."
+    answer: "Não. A estrutura já vem pronta para você ajustar as informações principais."
   },
   {
     question: "Tem garantia?",
-    answer: "As condicoes de garantia seguem a pagina de checkout vinculada ao pack."
+    answer: "As condições de garantia seguem a página de checkout vinculada ao pack."
   }
 ];
+
 
 function PaymentStrip() {
   return (
@@ -147,8 +134,9 @@ function GalleryGrid({
           </div>
         ) : (
           <div className="mt-9 rounded-[8px] border border-black/10 bg-white p-8 text-center text-black/58">
-            Nenhuma previa cadastrada nesta secao.
+            Nenhuma prévia cadastrada nesta seção.
           </div>
+
         )}
       </div>
     </section>
@@ -257,8 +245,9 @@ function OfferBlock({ pack }: { pack: PackDetail }) {
               </p>
             ) : null}
             <p className="mt-2 text-[2.5rem] font-bold leading-none text-black">
-              {pack.price ? formatCurrency(pack.price.priceCents) : "Preco sob consulta"}
+              {pack.price ? formatCurrency(pack.price.priceCents) : "Preço sob consulta"}
             </p>
+
             {pack.price?.installmentText ? (
               <p className="mt-3 text-[0.94rem] text-black/58">{pack.price.installmentText}</p>
             ) : null}
@@ -311,7 +300,8 @@ export function PackDetailPage() {
           return;
         }
 
-        setErrorMessage(error instanceof Error ? error.message : "Nao foi possivel carregar o pack.");
+        setErrorMessage(error instanceof Error ? error.message : "Não foi possível carregar o pack.");
+
         setStatus("error");
       }
     };
@@ -335,6 +325,7 @@ export function PackDetailPage() {
     return <div className="min-h-screen bg-white p-8 text-black/64">Carregando pack...</div>;
   }
 
+
   if (status === "config") {
     return (
       <div className="min-h-screen bg-white p-8 text-black">
@@ -343,9 +334,10 @@ export function PackDetailPage() {
           Voltar
         </Link>
         <div className="mt-10 max-w-[42rem] rounded-[8px] border border-black/10 bg-[#f8f8f8] p-8">
-          <h1 className="text-[1.5rem] font-semibold">Conteudo indisponivel</h1>
-          <p className="mt-3 text-black/68">Esta pagina sera exibida assim que tudo estiver pronto.</p>
+          <h1 className="text-[1.5rem] font-semibold">Conteúdo indisponível</h1>
+          <p className="mt-3 text-black/68">Esta página será exibida assim que tudo estiver pronto.</p>
         </div>
+
       </div>
     );
   }
@@ -354,11 +346,12 @@ export function PackDetailPage() {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-white px-6 text-center text-black">
         <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-black/44">
-          Pack nao encontrado
+          Pack não encontrado
         </p>
         <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] leading-[0.88]">
-          Essa pagina ainda nao esta publicada
+          Essa página ainda não está publicada
         </h1>
+
         <Link
           to="/"
           className="mt-8 inline-flex items-center gap-2 rounded-[8px] bg-black px-5 py-3 text-white"
@@ -448,22 +441,7 @@ export function PackDetailPage() {
 
       <OfferBlock pack={pack} />
 
-      <section className="bg-[#f7f7f7] py-14 sm:py-18">
-        <div className="mx-auto w-full max-w-[1180px] px-6 md:px-8 lg:px-10">
-          <h2 className="mx-auto max-w-[42rem] text-center font-display text-[clamp(2.2rem,5vw,4.5rem)] leading-[0.9]">
-            Clientes que ja organizaram o conteudo
-          </h2>
-          <div className="mt-9 grid gap-4 md:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <article key={testimonial.name} className="rounded-[8px] border border-black/10 bg-white p-5">
-                <p className="text-[0.95rem] leading-[1.5] text-black/70">{testimonial.text}</p>
-                <p className="mt-5 text-[0.92rem] font-semibold text-black">{testimonial.name}</p>
-                <p className="text-[0.82rem] text-black/48">{testimonial.location}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialCarousel />
 
       <section className="py-14 sm:py-18">
         <div className="mx-auto w-full max-w-[980px] px-6 md:px-8 lg:px-10">
