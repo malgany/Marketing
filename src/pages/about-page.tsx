@@ -55,28 +55,22 @@ export function AboutPage() {
             animate="visible"
             variants={containerVariants}
           >
-            {/* Title Section - Centered */}
-            <motion.div variants={itemVariants} className="space-y-4 text-center">
-              <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-display leading-[0.95] tracking-tighter text-[#080808]">
+            {/* Title & Subtext Section - Left Aligned */}
+            <motion.div variants={itemVariants} className="space-y-4">
+              <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-display leading-[0.9] tracking-tighter text-[#080808]">
                 Design de <span className="text-black/30 italic font-medium">alto nível</span> para marcas que buscam protagonismo.
               </h1>
+              <p className="text-2xl md:text-3xl font-medium leading-[1.2] text-black/40 tracking-tight max-w-4xl">
+                A Brandly nasceu para simplificar a excelência visual, unindo a agilidade de um estúdio com a qualidade de grandes agências.
+              </p>
             </motion.div>
             
-            {/* Content Section - Perfectly Aligned with Title */}
-            <motion.div variants={itemVariants} className="mt-24">
+            {/* Content Section - Darker and Justified */}
+            <motion.div variants={itemVariants} className="mt-20">
               <div className="space-y-12">
-                <div className="space-y-6 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black/30 block mb-2">
-                    Nossa Trajetória
-                  </span>
-                  <p className="text-2xl md:text-3xl font-medium leading-[1.2] text-black/90 tracking-tight text-center max-w-3xl mx-auto">
-                    A Brandly nasceu para simplificar a excelência visual, unindo a agilidade de um estúdio com a qualidade de grandes agências.
-                  </p>
-                </div>
-                
                 <div className="h-px w-full bg-black/[0.05]" />
                 
-                <div className="space-y-10 text-lg md:text-xl text-black/50 leading-[1.7] text-justify font-light italic">
+                <div className="space-y-10 text-xl md:text-2xl text-black/75 leading-[1.7] text-justify font-light italic">
                   <p>
                     Acreditamos que no ambiente digital saturado de hoje, um design medíocre é invisível. Nossa missão é garantir que sua marca não apenas apareça, mas se destaque com elegância e propósito. Criamos ativos que comunicam autoridade e profissionalismo em cada detalhe.
                   </p>
